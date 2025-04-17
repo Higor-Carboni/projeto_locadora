@@ -6,9 +6,11 @@
 package view;
 
 import controller.UsuarioController;
+import controller.VeiculoController;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Usuario;
+import model.Veiculo;
 import utils.Utils;
 
 /**
@@ -23,6 +25,7 @@ public class FrCadVeiculos extends javax.swing.JDialog {
     public FrCadVeiculos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -36,20 +39,18 @@ public class FrCadVeiculos extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
-        edtNome = new javax.swing.JTextField();
-        edtEmail = new javax.swing.JTextField();
+        edtAno = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
-        edtDataNasc = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblSenha1 = new javax.swing.JLabel();
         lblSenha2 = new javax.swing.JLabel();
-        edtDataNasc1 = new javax.swing.JFormattedTextField();
         lblSenha3 = new javax.swing.JLabel();
-        edtDataNasc2 = new javax.swing.JFormattedTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
+        edtModelo = new javax.swing.JTextField();
+        edtMarca = new javax.swing.JTextField();
+        edtPlaca = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,23 +61,12 @@ public class FrCadVeiculos extends javax.swing.JDialog {
         lblTitulo.setText("Cadastro de Veiculo");
         jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
-        lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblNome.setText("Veiculo ID");
-        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
-
-        edtNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 380, -1));
-
-        edtEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 380, -1));
+        edtAno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 170, -1));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("Modelo");
         jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
-
-        edtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        edtDataNasc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 120, -1));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -109,17 +99,9 @@ public class FrCadVeiculos extends javax.swing.JDialog {
         lblSenha2.setText("Ano");
         jPanel1.add(lblSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, -1));
 
-        edtDataNasc1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        edtDataNasc1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDataNasc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 380, -1));
-
         lblSenha3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha3.setText("Placa");
         jPanel1.add(lblSenha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
-
-        edtDataNasc2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        edtDataNasc2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDataNasc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 380, -1));
 
         jRadioButton1.setText("Disponivel");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +110,15 @@ public class FrCadVeiculos extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, -1, -1));
+
+        edtModelo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 380, -1));
+
+        edtMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 380, -1));
+
+        edtPlaca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 380, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,20 +195,22 @@ public class FrCadVeiculos extends javax.swing.JDialog {
     public void gravar(){
     //criar uma instância da classe Usuario 
     //vou preencher os campos
-    Usuario usu = new Usuario();
+    Veiculo v = new Veiculo();
     
    
     
-    //conversão de String para Date
+    //conversão de String para Date;
+    v.setModelo(edtModelo.getText());
+    v.setMarca(edtMarca.getText());
+    v.setPlaca(edtPlaca.getText());
+    v.setAno(edtAno.getText());
     
-    usu.setNome(edtNome.getText());
-    usu.setEmail(edtEmail.getText());
    
     
     //depois passo o objeto para o controller e ele irá gravar no banco de dados
-    UsuarioController controller = new UsuarioController();
+    VeiculoController controller = new VeiculoController();
     
-    if(controller.inserirUsuario(usu)){
+    if(controller.inserir(v)){
       JOptionPane.showMessageDialog(null,
               "Usuário gravado com sucesso");
       this.dispose();
@@ -235,17 +228,8 @@ public class FrCadVeiculos extends javax.swing.JDialog {
     //Senha - pelo menos 6 dígitos
     //Data - verificar se está no formato de data dd/mm/aaaa
         
-    if (!edtNome.getText().matches("^[\\p{L} ]+$")) {//a-
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Nome' possui formato inválido");
-      return false;
-    }
     
-    if (!edtEmail.getText().matches("^[a-z0-9._-]+@[a-z0-9._-]+.[a-z._]+$")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Email' possui formato inválido");
-      return false;
-    }
+  
     
     return true;
   }
@@ -253,16 +237,14 @@ public class FrCadVeiculos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JFormattedTextField edtDataNasc;
-    private javax.swing.JFormattedTextField edtDataNasc1;
-    private javax.swing.JFormattedTextField edtDataNasc2;
-    private javax.swing.JTextField edtEmail;
-    private javax.swing.JTextField edtNome;
+    private javax.swing.JTextField edtAno;
+    private javax.swing.JTextField edtMarca;
+    private javax.swing.JTextField edtModelo;
+    private javax.swing.JTextField edtPlaca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha1;
     private javax.swing.JLabel lblSenha2;
     private javax.swing.JLabel lblSenha3;

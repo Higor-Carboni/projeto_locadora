@@ -5,9 +5,9 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.ClienteController;
 import javax.swing.JOptionPane;
-import model.Usuario;
+import model.Cliente;
 
 /**
  *
@@ -32,17 +32,21 @@ public class FrCadCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        edtNome1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
-        edtEmail = new javax.swing.JTextField();
+        edtCPF = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        edtDataNasc = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        edtNome2 = new javax.swing.JTextField();
+        edtEmail = new javax.swing.JTextField();
+
+        edtNome1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,25 +59,21 @@ public class FrCadCliente extends javax.swing.JDialog {
 
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNome.setText("Nome");
-        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         edtNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 380, -1));
+        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 380, -1));
 
-        edtEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 380, -1));
+        edtCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 380, -1));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("Email");
-        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha.setText("CPF");
-        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
-
-        edtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        edtDataNasc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 380, -1));
+        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -98,6 +98,12 @@ public class FrCadCliente extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
+        edtNome2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtNome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 380, -1));
+
+        edtEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 380, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,7 +120,7 @@ public class FrCadCliente extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //verificar os campos se estão preenchidos corretamente
-        if(verificarCampos()){
+        if (verificarCampos()) {
             //Se estiverem corretos vou gravar
             gravar();
         }
@@ -166,61 +172,64 @@ public class FrCadCliente extends javax.swing.JDialog {
             }
         });
     }
-    
-    public void gravar(){
-    //criar uma instância da classe Usuario 
-    //vou preencher os campos
-    Usuario usu = new Usuario();
-    
-   
-    
-    //conversão de String para Date
-    
-    usu.setNome(edtNome.getText());
-    usu.setEmail(edtEmail.getText());
-   
-    
-    //depois passo o objeto para o controller e ele irá gravar no banco de dados
-    UsuarioController controller = new UsuarioController();
-    
-    if(controller.inserirUsuario(usu)){
-      JOptionPane.showMessageDialog(null,
-              "Usuário gravado com sucesso");
-      this.dispose();
-    }else{
-      JOptionPane.showMessageDialog(null,
-              "O cadastro não foi gravado");
-    }      
-  }
-     public boolean verificarCampos(){
-    //Se eu conseguir passar pelas validações retorna true
-    
-    //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
-    //Email - ter um formato de email a@a.com
-    //Senha - pelo menos 6 dígitos
-    //Data - verificar se está no formato de data dd/mm/aaaa
-        
-    if (!edtNome.getText().matches("^[\\p{L} ]+$")) {//a-
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Nome' possui formato inválido");
-      return false;
-    }
-    
-    if (!edtEmail.getText().matches("^[a-z0-9._-]+@[a-z0-9._-]+.[a-z._]+$")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Email' possui formato inválido");
-      return false;
-    }
-    
-    return true;
-  }
 
+    public void gravar() {
+        //criar uma instância da classe cario 
+        //vou preencher os campos
+        Cliente c = new Cliente();
+
+        //conversão de String para Date
+        c.setNome(edtNome.getText());
+        c.setEmailCli(edtCPF.getText());
+        c.setCpf(edtCPF.getText());
+
+        //depois passo o objeto para o controller e ele irá gravar no banco de dados
+        ClienteController controller = new ClienteController();
+
+        if (controller.inserir(c)) {
+            JOptionPane.showMessageDialog(null,
+                    "Cliente gravado com sucesso");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "O cadastro não foi gravado");
+        }
+    }
+
+    public boolean verificarCampos() {
+        //Se eu conseguir passar pelas validações retorna true
+
+        //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
+        //Email - ter um formato de email a@a.com
+        //Senha - pelo menos 6 dígitos
+        //Data - verificar se está no formato de data dd/mm/aaaa
+        if (!edtNome.getText().matches("^[\\p{L} ]+$")) {//a-
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Nome' possui formato inválido");
+            return false;
+        }
+
+        if (!edtEmail.getText().matches("^[a-z0-9._-]+@[a-z0-9._-]+.[a-z._]+$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Email' possui formato inválido");
+            return false;
+        }
+        if (!edtCPF.getText().matches("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'CPF' deve estar no formato 000.000.000-00");
+            return false;
+        }
+        
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JFormattedTextField edtDataNasc;
+    private javax.swing.JTextField edtCPF;
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtNome;
+    private javax.swing.JTextField edtNome1;
+    private javax.swing.JTextField edtNome2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;

@@ -19,7 +19,7 @@ public class GerenciadorConexao {
   //final - o valor da variável não mudará
   private static final String URL = "jdbc:mysql://127.0.0.1:3306/locadora";
   private static final String USER = "root";
-  private static final String PASSWORD = "";
+  private static final String PASSWORD = "root";
 
   private Connection conexao;
   

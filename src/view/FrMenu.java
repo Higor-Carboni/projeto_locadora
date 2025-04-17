@@ -39,10 +39,12 @@ public class FrMenu extends javax.swing.JFrame {
         meCadastro = new javax.swing.JMenu();
         miCadUsuario = new javax.swing.JMenuItem();
         miCadVeiculo = new javax.swing.JMenuItem();
+        miCadCliente = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
         meConsulta = new javax.swing.JMenu();
         miConUsuario = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        miConVeiculo = new javax.swing.JMenuItem();
+        miConCliente = new javax.swing.JMenuItem();
         meSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,6 +97,14 @@ public class FrMenu extends javax.swing.JFrame {
         });
         meCadastro.add(miCadVeiculo);
 
+        miCadCliente.setText("Cliente");
+        miCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadClienteActionPerformed(evt);
+            }
+        });
+        meCadastro.add(miCadCliente);
+
         miSair.setText("Sair");
         miSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,13 +126,21 @@ public class FrMenu extends javax.swing.JFrame {
         });
         meConsulta.add(miConUsuario);
 
-        jMenuItem3.setText("???");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        miConVeiculo.setText("Veiculo");
+        miConVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                miConVeiculoActionPerformed(evt);
             }
         });
-        meConsulta.add(jMenuItem3);
+        meConsulta.add(miConVeiculo);
+
+        miConCliente.setText("Cliente");
+        miConCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConClienteActionPerformed(evt);
+            }
+        });
+        meConsulta.add(miConCliente);
 
         barMenu.add(meConsulta);
 
@@ -159,9 +177,11 @@ public class FrMenu extends javax.swing.JFrame {
     telaConsulta.setVisible(true);
   }//GEN-LAST:event_miConUsuarioActionPerformed
 
-  private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_jMenuItem3ActionPerformed
+  private void miConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConClienteActionPerformed
+    FrConClientes telaCliente = new FrConClientes(this, rootPaneCheckingEnabled);
+    
+    telaCliente.setVisible(true);
+  }//GEN-LAST:event_miConClienteActionPerformed
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
     URL caminhoImagem = getClass().getResource("/images/logo_mini.png");
@@ -195,6 +215,18 @@ public class FrMenu extends javax.swing.JFrame {
         
         telaVeiculo.setVisible(true);
     }//GEN-LAST:event_miCadVeiculoActionPerformed
+
+    private void miConVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConVeiculoActionPerformed
+        FrConVeiculo telaVeiculo = new FrConVeiculo(this, rootPaneCheckingEnabled);
+        
+        telaVeiculo.setVisible(true);
+    }//GEN-LAST:event_miConVeiculoActionPerformed
+
+    private void miCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadClienteActionPerformed
+        FrCadCliente telaCliente = new FrCadCliente(this, rootPaneCheckingEnabled);
+        
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_miCadClienteActionPerformed
 
   /**
    * @param args the command line arguments
@@ -233,15 +265,17 @@ public class FrMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblImagem;
     private javax.swing.JMenu meCadastro;
     private javax.swing.JMenu meConsulta;
     private javax.swing.JMenu meSobre;
+    private javax.swing.JMenuItem miCadCliente;
     private javax.swing.JMenuItem miCadUsuario;
     private javax.swing.JMenuItem miCadVeiculo;
+    private javax.swing.JMenuItem miConCliente;
     private javax.swing.JMenuItem miConUsuario;
+    private javax.swing.JMenuItem miConVeiculo;
     private javax.swing.JMenuItem miSair;
     // End of variables declaration//GEN-END:variables
 }

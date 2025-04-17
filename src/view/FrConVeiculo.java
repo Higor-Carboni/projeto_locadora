@@ -64,7 +64,7 @@ public class FrConVeiculo extends javax.swing.JDialog {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Modelo", "Marcal", "Placa", "Ano", "Disponivel"
+                "Id", "Modelo", "Marca", "Placa", "Ano", "Disponivel"
             }
         ) {
             Class[] types = new Class [] {

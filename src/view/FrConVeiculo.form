@@ -75,7 +75,7 @@
                   <Table columnCount="6" rowCount="4">
                     <Column editable="false" title="Id" type="java.lang.Integer"/>
                     <Column editable="false" title="Modelo" type="java.lang.String"/>
-                    <Column editable="false" title="Marcal" type="java.lang.String"/>
+                    <Column editable="false" title="Marca" type="java.lang.String"/>
                     <Column editable="false" title="Placa" type="java.lang.String"/>
                     <Column editable="false" title="Ano" type="java.lang.String"/>
                     <Column editable="false" title="Disponivel" type="java.lang.Boolean"/>

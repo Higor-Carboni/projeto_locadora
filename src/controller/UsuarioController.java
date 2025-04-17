@@ -61,7 +61,7 @@ public class UsuarioController {
   public boolean inserirUsuario(Usuario usu) {
     //Montar o comando a ser executado
     //os ? são variáveis que são preenchidas mais adiante
-    String sql = "INSERT INTO usuario(nome, email, senha, datanascusu, ativo) "
+    String sql = "INSERT INTO usuario(nome, email, senha, datanasc, ativo) "
             + " VALUES (?,?,?,?,?)";
 
     //Cria uma instância do gerenciador de conexão(conexão com o banco de dados),
@@ -99,7 +99,7 @@ public class UsuarioController {
       sql = sql + " , senha = ? ";
     }
 
-    sql = sql + " , datanascusu = ?, ativo = ? WHERE pkusuario = ?";
+    sql = sql + " , datanasc = ?, ativo = ? WHERE pkusuario = ?";
 
     GerenciadorConexao gerenciador = new GerenciadorConexao();
     PreparedStatement comando = null;
@@ -170,7 +170,7 @@ public class UsuarioController {
         usu.setNome(resultado.getString("nome"));
         usu.setEmail(resultado.getString("email"));
         usu.setSenha(resultado.getString("senha"));
-        usu.setDataNasc(resultado.getDate("datanascusu"));
+        usu.setDataNasc(resultado.getDate("datanasc"));
         usu.setAtivo(resultado.getBoolean("ativo"));
       }
 
@@ -217,7 +217,7 @@ public class UsuarioController {
         usuario.setNome(resultado.getString("nome"));
         usuario.setEmail(resultado.getString("email"));
         usuario.setSenha(resultado.getString("senha"));
-        usuario.setDataNasc(resultado.getDate("datanascusu"));
+        usuario.setDataNasc(resultado.getDate("datanasc"));
         usuario.setAtivo(resultado.getBoolean("ativo"));
 
         //adiciono o usuário na lista
