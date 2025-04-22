@@ -5,6 +5,7 @@
  */
 package view;
 
+import components.BordaArredondada;
 import controller.UsuarioController;
 import java.awt.event.KeyEvent;
 import java.net.URL;
@@ -25,6 +26,12 @@ public class FrLogin extends javax.swing.JFrame {
     initComponents();
     
     this.setLocationRelativeTo(null);
+    
+    
+    
+        edtEmail.setBorder(new BordaArredondada(15));
+        edtSenha.setBorder(new BordaArredondada(15));
+        btnLogar.setBorder(new BordaArredondada(15));
   }
 
   /**
@@ -53,15 +60,15 @@ public class FrLogin extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAutenticacao.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lblAutenticacao.setText("Go&drive");
-        jPanel1.add(lblAutenticacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
+        jPanel1.add(lblAutenticacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
 
         edtEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, 273, -1));
+        jPanel1.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 273, -1));
 
         edtSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         edtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -69,16 +76,17 @@ public class FrLogin extends javax.swing.JFrame {
                 edtSenhaKeyPressed(evt);
             }
         });
-        jPanel1.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 273, -1));
+        jPanel1.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 273, -1));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("Email");
-        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, -1));
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha.setText("Senha");
-        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
 
+        btnLogar.setBackground(new java.awt.Color(204, 255, 255));
         btnLogar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnLogar.setText("Logar");
         btnLogar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,20 +94,20 @@ public class FrLogin extends javax.swing.JFrame {
                 btnLogarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, 121, -1));
+        jPanel1.add(btnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 121, -1));
 
         lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo_locadora.png"))); // NOI18N
-        jPanel1.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        jPanel1.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, -10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -110,7 +118,7 @@ public class FrLogin extends javax.swing.JFrame {
   }//GEN-LAST:event_btnLogarMouseClicked
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    URL caminhoImagem = getClass().getResource("/images/logo_mini.png");
+    URL caminhoImagem = getClass().getResource("/images/user_alterar.png");
 
     ImageIcon icon = new ImageIcon(caminhoImagem);
 

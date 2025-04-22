@@ -37,7 +37,7 @@ public class VeiculoController {
     }
 
     public boolean atualizar(Veiculo v) {
-        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, disponivel = ? WHERE Id = ?";
+        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, disponivel = ? WHERE pkVeiculo = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -49,7 +49,7 @@ public class VeiculoController {
             comando.setString(3, v.getPlaca());
             comando.setString(4, v.getAno());
             comando.setBoolean(5, v.isDisponivel());
-            comando.setInt(6, v.getid());
+            comando.setInt(6, v.getPkVeiculo());
 
             comando.executeUpdate();
             return true;
@@ -64,7 +64,7 @@ public class VeiculoController {
     }
 
     public boolean excluir(int id) {
-        String sql = "DELETE FROM veiculo WHERE id = ?";
+        String sql = "DELETE FROM veiculo WHERE pkVeiculo = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -100,7 +100,7 @@ public class VeiculoController {
 
             while (resultado.next()) {
                 Veiculo v = new Veiculo();
-                v.setid(resultado.getInt("id"));
+                v.setid(resultado.getInt("pkveiculo"));
                 v.setModelo(resultado.getString("modelo"));
                 v.setMarca(resultado.getString("marca"));
                 v.setPlaca(resultado.getString("placa"));
@@ -120,7 +120,7 @@ public class VeiculoController {
     }
 
     public Veiculo buscarPorId(int id) {
-        String sql = "SELECT * FROM veiculo WHERE id = ?";
+        String sql = "SELECT * FROM veiculo WHERE pkVeiculo = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -134,7 +134,7 @@ public class VeiculoController {
             resultado = comando.executeQuery();
 
             if (resultado.next()) {
-                v.setid(resultado.getInt("id"));
+                v.setid(resultado.getInt("pkveiculo"));
                 v.setModelo(resultado.getString("modelo"));
                 v.setMarca(resultado.getString("marca"));
                 v.setPlaca(resultado.getString("placa"));

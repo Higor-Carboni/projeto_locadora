@@ -10,17 +10,17 @@ public class Usuario {
   private String nome;
   private String email;
   private String senha;
-  private Date dataNasc;
+  private Date dataNascUsu;
   private boolean ativo;
 
   public Usuario(){};
   
-  public Usuario(int pkUsuario, String nome, String email, String senha, Date dataNasc, boolean ativo) {
+  public Usuario(int pkUsuario, String nome, String email, String senha, Date dataNascUsu, boolean ativo) {
     this.pkUsuario = pkUsuario;
     this.nome = nome;
     this.email = email;
     this.senha = senha;
-    this.dataNasc = dataNasc;
+    this.dataNascUsu = dataNascUsu;
     this.ativo = ativo;
   }
 
@@ -56,12 +56,12 @@ public class Usuario {
     this.senha = senha;
   }
 
-  public Date getDataNasc() {
-    return dataNasc;
+  public Date getDataNascUsu() {
+    return dataNascUsu;
   }
 
-  public void setDataNasc(Date dataNasc) {
-    this.dataNasc = dataNasc;
+  public void setDataNascUsu(Date dataNascUsu) {
+    this.dataNascUsu = dataNascUsu;
   }
 
   public boolean isAtivo() {

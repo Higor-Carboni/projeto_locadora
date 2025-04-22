@@ -5,10 +5,12 @@
  */
 package view;
 
+import components.BordaArredondada;
 import controller.ClienteController;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import model.Cliente;
 
 /**
@@ -23,6 +25,26 @@ public class FrConClientes extends javax.swing.JDialog {
     public FrConClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ajustarColunas();
+        //Abre a tela centralizada
+        this.setLocationRelativeTo(null);
+
+        btnAlterar.setBorder(new BordaArredondada(15));
+        btnExcluir.setBorder(new BordaArredondada(15));
+        btnPesquisar.setBorder(new BordaArredondada(15));
+        btnVoltar.setBorder(new BordaArredondada(15));
+
+        javax.swing.border.Border padding = new javax.swing.border.EmptyBorder(5, 5, 5, 5);
+        javax.swing.border.Border line = new javax.swing.border.LineBorder(new java.awt.Color(150, 150, 200), 2, true);
+        javax.swing.border.Border roundedBorder = javax.swing.BorderFactory.createCompoundBorder(line, padding);
+        jScrollPane1.setBorder(roundedBorder);
+    }
+
+    private void ajustarColunas() {
+        TableColumn colunaId = tblCliente.getColumnModel().getColumn(0);
+        colunaId.setMinWidth(40);
+        colunaId.setMaxWidth(40);
+        colunaId.setPreferredWidth(40);
     }
 
     /**
@@ -40,28 +62,44 @@ public class FrConClientes extends javax.swing.JDialog {
         tblCliente = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         lblTitulo.setText("Consulta de Clientes");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
 
+        tblCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Email", "CPF"
+                "ID", "Nome", "Email", "CPF"
             }
         ) {
             Class[] types = new Class [] {
@@ -79,9 +117,11 @@ public class FrConClientes extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblCliente.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblCliente);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 670, 320));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 540, 320));
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnExcluir.setText("Excluir");
@@ -90,7 +130,7 @@ public class FrConClientes extends javax.swing.JDialog {
                 btnExcluirMouseClicked(evt);
             }
         });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, -1, -1));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
 
         btnAlterar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAlterar.setText("Alterar");
@@ -99,29 +139,40 @@ public class FrConClientes extends javax.swing.JDialog {
                 btnAlterarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 520, -1, -1));
 
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnCancelar.setText("Voltar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
 
         btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-lupa24px.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPesquisarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_consultar.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_lupa.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,35 +181,35 @@ public class FrConClientes extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- public void pesquisar(){
-    //Pega o modelo da grade com suas colunas
-    // o 
-    DefaultTableModel modeloTabela = (DefaultTableModel) tblCliente.getModel();
+ public void pesquisar() {
+        //Pega o modelo da grade com suas colunas
+        // o 
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblCliente.getModel();
 
-    //Limpa a grade setando o número de linhas para zero
-    modeloTabela.setNumRows(0);
+        //Limpa a grade setando o número de linhas para zero
+        modeloTabela.setNumRows(0);
 
-    //Cria um UsuarioController para poder acessar os dados de tbusuario
-    ClienteController controller = new ClienteController();
-    
-    //consulta os usuários e guarda a lista de usuários que encontrou
-    List<Cliente> listaCliente = controller.listar();
-    
-    //Preencher a grade
-    //percorre todos os usuários presentes na lista
-    for (Cliente c : listaCliente) {
-      //cria um array onde cada posição é o valor das colunas da grade
-      Object[] linha = {
-        c.getId(),
-        c.getNome(), //coluna 1
-        c.getEmailCli(), //coluna 2
-        c.getCpf()
-      };
-      
-      //Adiciona o array com os dados do usuário na grade
-      modeloTabela.addRow(linha);
+        //Cria um UsuarioController para poder acessar os dados de tbusuario
+        ClienteController controller = new ClienteController();
+
+        //consulta os usuários e guarda a lista de usuários que encontrou
+        List<Cliente> listaCliente = controller.listar();
+
+        //Preencher a grade
+        //percorre todos os usuários presentes na lista
+        for (Cliente c : listaCliente) {
+            //cria um array onde cada posição é o valor das colunas da grade
+            Object[] linha = {
+                c.getId(),
+                c.getNome(), //coluna 1
+                c.getEmailCli(), //coluna 2
+                c.getCpf()
+            };
+
+            //Adiciona o array com os dados do usuário na grade
+            modeloTabela.addRow(linha);
+        }
     }
-  }
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
         //Verificar se tem uma linha da grade selecionada
         if (tblCliente.getSelectedRow() != -1) {
@@ -171,10 +222,10 @@ public class FrConClientes extends javax.swing.JDialog {
 
             //com o pkUsuario eu vou chamar um método de deletar no controller
             ClienteController controller = new ClienteController();
-            if(controller.excluir(cliente)){
+            if (controller.excluir(cliente)) {
                 pesquisar();
                 JOptionPane.showMessageDialog(rootPane, "Deletado com sucesso");
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi deletado");
             }
         }
@@ -192,10 +243,9 @@ public class FrConClientes extends javax.swing.JDialog {
 
             //com o pkUsuario eu vou criar uma tela de
             //alteração passando o pkUsuario
-
             //Essa tela irá carregar os dados desse usuário
             //para poder alterar
-            FrAltUsuario telaAlt = new FrAltUsuario(null,rootPaneCheckingEnabled, pkUsuario);
+            FrAltCliente telaAlt = new FrAltCliente(null, rootPaneCheckingEnabled, pkUsuario);
 
             telaAlt.setVisible(true);
 
@@ -206,6 +256,14 @@ public class FrConClientes extends javax.swing.JDialog {
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
         pesquisar();
     }//GEN-LAST:event_btnPesquisarMouseClicked
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,16 +279,24 @@ public class FrConClientes extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrConClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrConClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrConClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrConClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrConClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrConClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrConClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrConClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -251,9 +317,9 @@ public class FrConClientes extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

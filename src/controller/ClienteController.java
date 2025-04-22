@@ -35,7 +35,7 @@ public class ClienteController {
     }
 
     public boolean atualizar(Cliente c) {
-        String sql = "UPDATE cliente SET nome = ?, emailCli = ?, CPF = ? WHERE ID = ?";
+        String sql = "UPDATE cliente SET nome = ?, emailCli = ?, CPF = ? WHERE pkCliente = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -60,7 +60,7 @@ public class ClienteController {
     }
 
     public boolean excluir(int id) {
-        String sql = "DELETE FROM cliente WHERE ID = ?";
+        String sql = "DELETE FROM cliente WHERE pkCliente = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -96,7 +96,7 @@ public class ClienteController {
 
             while (resultado.next()) {
                 Cliente c = new Cliente();
-                c.setId(resultado.getInt("ID"));
+                c.setId(resultado.getInt("pkCliente"));
                 c.setNome(resultado.getString("nome"));
                 c.setEmailCli(resultado.getString("emailCli"));
                 c.setCpf(resultado.getString("CPF"));
@@ -114,7 +114,7 @@ public class ClienteController {
     }
 
     public Cliente buscarPorId(int id) {
-        String sql = "SELECT * FROM cliente WHERE ID = ?";
+        String sql = "SELECT * FROM cliente WHERE pkCliente = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -128,7 +128,7 @@ public class ClienteController {
             resultado = comando.executeQuery();
 
             if (resultado.next()) {
-                c.setId(resultado.getInt("ID"));
+                c.setId(resultado.getInt("pkCliente"));
                 c.setNome(resultado.getString("nome"));
                 c.setEmailCli(resultado.getString("emailCli"));
                 c.setCpf(resultado.getString("CPF"));

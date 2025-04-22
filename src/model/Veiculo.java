@@ -10,7 +10,7 @@ package model;
  * @author arthu
  */
 public class Veiculo {
-    private int id;
+    private int pkVeiculo;
     private String modelo;
     private String marca;
     private String placa;
@@ -19,12 +19,12 @@ public class Veiculo {
 
     // Getters e Setters
 
-    public int getid() {
-        return id;
+    public int getPkVeiculo() {
+        return pkVeiculo;
     }
 
-    public void setid(int id) {
-        this.id = id;
+    public void setid(int pkVeiculo) {
+        this.pkVeiculo = pkVeiculo;
     }
 
     public String getModelo() {

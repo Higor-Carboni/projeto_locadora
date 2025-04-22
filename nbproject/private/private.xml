@@ -3,19 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/model/FrAluguel.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrCadVeiculos.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/controller/AluguelController.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/model/Usuario.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrMenu.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrCadCliente.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrCadUsuario.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrAluguel.form</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/controller/ClienteController.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrConVeiculo.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/model/Cliente.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/controller/UsuarioController.java</file>
-            <file>file:/C:/Users/arthu/OneDrive/Documentos/NetBeansProjects/Locadora_Certo/src/view/FrConClientes.java</file>
+            <file>file:/C:/Users/higor/Downloads/projeto_locadora-main/projeto_locadora-main/src/controller/ClienteController.java</file>
+            <file>file:/C:/Users/higor/Downloads/projeto_locadora-main/projeto_locadora-main/src/projetopoo/ProjetoPOO.java</file>
+            <file>file:/C:/Users/higor/Downloads/projeto_locadora-main/projeto_locadora-main/src/view/FrLogin.java</file>
         </group>
     </open-files>
 </project-private>

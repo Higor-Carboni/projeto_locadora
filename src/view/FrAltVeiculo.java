@@ -6,6 +6,7 @@
 
 package view;
 
+import components.BordaArredondada;
 import controller.VeiculoController;
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -20,15 +21,26 @@ import utils.Utils;
 public class FrAltVeiculo extends javax.swing.JDialog {
 
     /** Creates new form FrAltVeiculo */
-    private int id;
+    private int pkVeiculo;
     
     public FrAltVeiculo(java.awt.Frame parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
         
-        this.id = id;
+        //this.pkVeiculo = pkVeiculo;
         
         carregarVeiculo();
+        this.setLocationRelativeTo(null);
+        
+        
+        chkDisponivel.setBorder(new BordaArredondada(15));
+        edtAno.setBorder(new BordaArredondada(15));
+        edtCodigo.setBorder(new BordaArredondada(15));
+        edtMarca.setBorder(new BordaArredondada(15));
+        edtPlaca.setBorder(new BordaArredondada(15));
+        btnSalvar.setBorder(new BordaArredondada(15));
+        btnCancelar.setBorder(new BordaArredondada(15));
+
     }
      public void carregarVeiculo() {
     //vamos buscar no banco de dados o restante
@@ -36,12 +48,12 @@ public class FrAltVeiculo extends javax.swing.JDialog {
     //tem o pk
 
     VeiculoController controller = new VeiculoController();
-    Veiculo veiculo = controller.buscarPorId(id);
+    Veiculo veiculo = controller.buscarPorId(pkVeiculo);
 
-    String codigo = String.valueOf(veiculo.getid());
+    String codigo = String.valueOf(veiculo.getPkVeiculo());
     edtCodigo.setText(codigo);
     edtMarca.setText(veiculo.getMarca());
-    edtModelo.setText(veiculo.getModelo());
+    edtMarca.setText(veiculo.getModelo());
     edtPlaca.setText(veiculo.getPlaca());
     edtAno.setText(veiculo.getAno());
     chkDisponivel.setSelected(veiculo.isDisponivel());
@@ -67,16 +79,15 @@ public class FrAltVeiculo extends javax.swing.JDialog {
         lblConfirmaSenha = new javax.swing.JLabel();
         chkDisponivel = new javax.swing.JCheckBox();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        edtModelo = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         edtMarca = new javax.swing.JTextField();
         edtPlaca = new javax.swing.JTextField();
+        edtModelo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -120,15 +131,9 @@ public class FrAltVeiculo extends javax.swing.JDialog {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 140, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
-
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNome.setText("Modelo");
         jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
-
-        edtModelo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 380, -1));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -145,6 +150,9 @@ public class FrAltVeiculo extends javax.swing.JDialog {
 
         edtPlaca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(edtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 380, -1));
+
+        edtModelo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 380, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,13 +189,13 @@ public class FrAltVeiculo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarMouseClicked
 
      public boolean verificarCampos() {
-    if (edtModelo.getText().equals("")) {
+    if (edtMarca.getText().equals("")) {
       JOptionPane.showMessageDialog(null,
               "O campo 'Nome' em branco");
       return false;
     }
 
-    if (!edtModelo.getText().matches("^[\\p{L} ]+$")) {
+    if (!edtMarca.getText().matches("^[\\p{L} ]+$")) {
       JOptionPane.showMessageDialog(null,
               "O campo 'Nome' possui caracteres inválidos");
       return false;
@@ -214,8 +222,8 @@ public class FrAltVeiculo extends javax.swing.JDialog {
     Veiculo Veiculo = new Veiculo();
     
     //preenche os dados do usuário
-    Veiculo.setid(id); 
-    Veiculo.setModelo(edtModelo.getText());
+    Veiculo.setid(pkVeiculo); 
+    Veiculo.setModelo(edtMarca.getText());
     Veiculo.setAno(edtAno.getText());
     Veiculo.setMarca(edtMarca.getText());
     Veiculo.setPlaca(edtPlaca.getText());
@@ -230,7 +238,7 @@ public class FrAltVeiculo extends javax.swing.JDialog {
 
     if (controller.atualizar(Veiculo)) {
       JOptionPane.showMessageDialog(null,
-              "Veiulo: " + Veiculo.getid()
+              "Veiulo: " + Veiculo.getPkVeiculo()
               + " alterado com sucesso!");
       this.dispose();
     } else {
@@ -289,7 +297,6 @@ public class FrAltVeiculo extends javax.swing.JDialog {
     private javax.swing.JTextField edtMarca;
     private javax.swing.JTextField edtModelo;
     private javax.swing.JTextField edtPlaca;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblConfirmaSenha;

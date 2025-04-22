@@ -5,6 +5,7 @@
  */
 package view;
 
+import components.BordaArredondada;
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URL;
@@ -25,6 +26,11 @@ public class FrSobre extends javax.swing.JDialog {
     initComponents();
     
     this.setLocationRelativeTo(null);
+    
+    
+        btnLinkedIn.setBorder(new BordaArredondada(15));
+        btnGitHub.setBorder(new BordaArredondada(15));
+        btnVoltar.setBorder(new BordaArredondada(15));
   }
 
   /**
@@ -57,7 +63,7 @@ public class FrSobre extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Sobre");
@@ -66,7 +72,7 @@ public class FrSobre extends javax.swing.JDialog {
         jLabel2.setText("Versão: 1.0.0");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Autor: Arthur, Paula e Higor");
+        jLabel3.setText("Autor: Arthur e Higor");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -126,7 +132,7 @@ public class FrSobre extends javax.swing.JDialog {
                         .addGap(160, 160, 160)
                         .addComponent(btnVoltar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(127, 127, 127)
                         .addComponent(jLabel3)))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -141,9 +147,9 @@ public class FrSobre extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(13, 13, 13)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGitHub)
                     .addComponent(btnLinkedIn))

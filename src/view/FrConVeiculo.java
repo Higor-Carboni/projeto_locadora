@@ -5,11 +5,12 @@
  */
 package view;
 
-
+import components.BordaArredondada;
 import controller.VeiculoController;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import model.Usuario;
 import model.Veiculo;
 import utils.Utils;
@@ -26,6 +27,27 @@ public class FrConVeiculo extends javax.swing.JDialog {
     public FrConVeiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ajustarColunas();
+        //Abre a tela centralizada
+        this.setLocationRelativeTo(null);
+        
+        
+        btnAlterar.setBorder(new BordaArredondada(15));
+        btnExcluir.setBorder(new BordaArredondada(15));
+        btnPesquisar.setBorder(new BordaArredondada(15));
+        btnVoltar.setBorder(new BordaArredondada(15));
+
+        javax.swing.border.Border padding = new javax.swing.border.EmptyBorder(5, 5, 5, 5);
+        javax.swing.border.Border line = new javax.swing.border.LineBorder(new java.awt.Color(150, 150, 200), 2, true);
+        javax.swing.border.Border roundedBorder = javax.swing.BorderFactory.createCompoundBorder(line, padding);
+        jScrollPane1.setBorder(roundedBorder);
+    }
+
+    private void ajustarColunas() {
+        TableColumn colunaId = tblVeiculos.getColumnModel().getColumn(0);
+        colunaId.setMinWidth(40);
+        colunaId.setMaxWidth(40);
+        colunaId.setPreferredWidth(40);
     }
 
     /**
@@ -43,18 +65,18 @@ public class FrConVeiculo extends javax.swing.JDialog {
         tblVeiculos = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lblTitulo.setText("Consulta de Veículos");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         tblVeiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,7 +106,7 @@ public class FrConVeiculo extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblVeiculos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 670, 320));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 670, 320));
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnExcluir.setText("Excluir");
@@ -104,21 +126,27 @@ public class FrConVeiculo extends javax.swing.JDialog {
         });
         jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
 
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnCancelar.setText("Voltar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
 
         btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-lupa24px.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPesquisarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_consultar.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_lupa.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,25 +162,25 @@ public class FrConVeiculo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   public void pesquisar(){
-    DefaultTableModel modeloTabela = (DefaultTableModel) tblVeiculos.getModel();
-    modeloTabela.setNumRows(0);
+    public void pesquisar() {
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblVeiculos.getModel();
+        modeloTabela.setNumRows(0);
 
-    VeiculoController controller = new VeiculoController();
-    List<Veiculo> listaVeiculos = controller.listar();
+        VeiculoController controller = new VeiculoController();
+        List<Veiculo> listaVeiculos = controller.listar();
 
-    for (Veiculo veic : listaVeiculos) {
-        Object[] linha = {
-            veic.getid(), // Id
-            veic.getModelo(),
-            veic.getMarca(),
-            veic.getPlaca(),
-            veic.getAno(),
-            veic.isDisponivel()
-        };
-        modeloTabela.addRow(linha);
+        for (Veiculo veic : listaVeiculos) {
+            Object[] linha = {
+                veic.getPkVeiculo(), // Id
+                veic.getModelo(),
+                veic.getMarca(),
+                veic.getPlaca(),
+                veic.getAno(),
+                veic.isDisponivel()
+            };
+            modeloTabela.addRow(linha);
+        }
     }
-}
 
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
         //Verificar se tem uma linha da grade selecionada
@@ -166,10 +194,10 @@ public class FrConVeiculo extends javax.swing.JDialog {
 
             //com o pkUsuario eu vou chamar um método de deletar no controller
             VeiculoController controller = new VeiculoController();
-            if(controller.excluir(pkUsuario)){
+            if (controller.excluir(pkUsuario)) {
                 pesquisar();
                 JOptionPane.showMessageDialog(rootPane, "Deletado com sucesso");
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Não foi deletado");
             }
         }
@@ -187,10 +215,9 @@ public class FrConVeiculo extends javax.swing.JDialog {
 
             //com o pkUsuario eu vou criar uma tela de
             //alteração passando o pkUsuario
-
             //Essa tela irá carregar os dados desse usuário
             //para poder alterar
-            FrAltVeiculo telaAlt = new FrAltVeiculo(null,rootPaneCheckingEnabled, id);
+            FrAltVeiculo telaAlt = new FrAltVeiculo(null, rootPaneCheckingEnabled, id);
 
             telaAlt.setVisible(true);
 
@@ -201,6 +228,10 @@ public class FrConVeiculo extends javax.swing.JDialog {
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
         pesquisar();
     }//GEN-LAST:event_btnPesquisarMouseClicked
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+    this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -247,9 +278,9 @@ public class FrConVeiculo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

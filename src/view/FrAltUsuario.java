@@ -5,6 +5,7 @@
  */
 package view;
 
+import components.BordaArredondada;
 import controller.UsuarioController;
 import java.awt.Color;
 import java.util.Date;
@@ -37,6 +38,15 @@ public class FrAltUsuario extends javax.swing.JDialog {
     setPkusuario(pkusuario);
     //carregar os dados deste usuário
     carregarUsuario();
+    
+    
+        edtConfirmaSenha.setBorder(new BordaArredondada(15));
+        edtSenha.setBorder(new BordaArredondada(15));
+        edtDataNasc.setBorder(new BordaArredondada(15));
+        edtEmail.setBorder(new BordaArredondada(15));
+        edtNome.setBorder(new BordaArredondada(15));
+        btnCancelar.setBorder(new BordaArredondada(15));
+        btnSalvar.setBorder(new BordaArredondada(15));
   }
 
   public void carregarUsuario() {
@@ -51,7 +61,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     edtCodigo.setText(codigo);
     edtNome.setText(usuario.getNome());
     edtEmail.setText(usuario.getEmail());
-    edtDataNasc.setText(Utils.converterDateToString(usuario.getDataNasc()));
+    edtDataNasc.setText(Utils.converterDateToString(usuario.getDataNascUsu()));
     chkAtivo.setSelected(usuario.isAtivo());
 
   }
@@ -79,7 +89,6 @@ public class FrAltUsuario extends javax.swing.JDialog {
         chkAtivo = new javax.swing.JCheckBox();
         btnAlterarSenha = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
@@ -88,7 +97,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
         setTitle("Ateração de Usuário");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -158,9 +167,6 @@ public class FrAltUsuario extends javax.swing.JDialog {
             }
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 140, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNome.setText("Nome");
@@ -284,7 +290,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     }
 
     Date data = Utils.converterStringToDate(edtDataNasc.getText());
-    usuario.setDataNasc(data);
+    usuario.setDataNascUsu(data);
 
     usuario.setAtivo(chkAtivo.isSelected());
     
@@ -356,7 +362,6 @@ public class FrAltUsuario extends javax.swing.JDialog {
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtNome;
     private javax.swing.JPasswordField edtSenha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblConfirmaSenha;

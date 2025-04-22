@@ -5,6 +5,7 @@
  */
 package view;
 
+import components.BordaArredondada;
 import controller.UsuarioController;
 import controller.VeiculoController;
 import java.util.Date;
@@ -25,7 +26,14 @@ public class FrCadVeiculos extends javax.swing.JDialog {
     public FrCadVeiculos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        setLocationRelativeTo(null);
+        edtModelo.setBorder(new BordaArredondada(15));
+        edtMarca.setBorder(new BordaArredondada(15));
+        edtPlaca.setBorder(new BordaArredondada(15));
+        edtAno.setBorder(new BordaArredondada(15));
+        btnCancelar.setBorder(new BordaArredondada(15));
+        btnSalvar.setBorder(new BordaArredondada(15));
+
     }
 
     /**
@@ -54,19 +62,15 @@ public class FrCadVeiculos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitulo.setText("Cadastro de Veiculo");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         edtAno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 170, -1));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setText("Modelo");
-        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -76,7 +80,6 @@ public class FrCadVeiculos extends javax.swing.JDialog {
                 btnSalvarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 140, -1));
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
@@ -86,22 +89,17 @@ public class FrCadVeiculos extends javax.swing.JDialog {
                 btnCancelarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 140, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/veiculo_icon64.png"))); // NOI18N
 
         lblSenha1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha1.setText("Marca");
-        jPanel1.add(lblSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
         lblSenha2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha2.setText("Ano");
-        jPanel1.add(lblSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, -1, -1));
 
         lblSenha3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha3.setText("Placa");
-        jPanel1.add(lblSenha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
         jRadioButton1.setText("Disponivel");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,26 +107,87 @@ public class FrCadVeiculos extends javax.swing.JDialog {
                 jRadioButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, -1, -1));
 
         edtModelo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 380, -1));
 
         edtMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 380, -1));
 
         edtPlaca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 380, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(131, 131, 131))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEmail)
+                            .addComponent(edtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSenha1)
+                            .addComponent(edtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSenha3)
+                            .addComponent(edtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSenha2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(edtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(80, 80, 80)
+                                .addComponent(jRadioButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel1)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(lblEmail)
+                .addGap(8, 8, 8)
+                .addComponent(edtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblSenha1)
+                .addGap(18, 18, 18)
+                .addComponent(edtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblSenha3)
+                .addGap(18, 18, 18)
+                .addComponent(edtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(lblSenha2)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(edtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSalvar))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,7 +195,7 @@ public class FrCadVeiculos extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //verificar os campos se estão preenchidos corretamente
-        if(verificarCampos()){
+        if (verificarCampos()) {
             //Se estiverem corretos vou gravar
             gravar();
         }
@@ -192,47 +251,40 @@ public class FrCadVeiculos extends javax.swing.JDialog {
             }
         });
     }
-    public void gravar(){
-    //criar uma instância da classe Usuario 
-    //vou preencher os campos
-    Veiculo v = new Veiculo();
-    
-   
-    
-    //conversão de String para Date;
-    v.setModelo(edtModelo.getText());
-    v.setMarca(edtMarca.getText());
-    v.setPlaca(edtPlaca.getText());
-    v.setAno(edtAno.getText());
-    
-   
-    
-    //depois passo o objeto para o controller e ele irá gravar no banco de dados
-    VeiculoController controller = new VeiculoController();
-    
-    if(controller.inserir(v)){
-      JOptionPane.showMessageDialog(null,
-              "Usuário gravado com sucesso");
-      this.dispose();
-    }else{
-      JOptionPane.showMessageDialog(null,
-              "O cadastro não foi gravado");
-    }      
-  }
-  
-    public boolean verificarCampos(){
-    //Se eu conseguir passar pelas validações retorna true
-    
-    //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
-    //Email - ter um formato de email a@a.com
-    //Senha - pelo menos 6 dígitos
-    //Data - verificar se está no formato de data dd/mm/aaaa
-        
-    
-  
-    
-    return true;
-  }
+
+    public void gravar() {
+        //criar uma instância da classe Usuario 
+        //vou preencher os campos
+        Veiculo v = new Veiculo();
+
+        //conversão de String para Date;
+        v.setModelo(edtModelo.getText());
+        v.setMarca(edtMarca.getText());
+        v.setPlaca(edtPlaca.getText());
+        v.setAno(edtAno.getText());
+
+        //depois passo o objeto para o controller e ele irá gravar no banco de dados
+        VeiculoController controller = new VeiculoController();
+
+        if (controller.inserir(v)) {
+            JOptionPane.showMessageDialog(null,
+                    "Veículo gravado com sucesso");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "O cadastro não foi gravado");
+        }
+    }
+
+    public boolean verificarCampos() {
+        //Se eu conseguir passar pelas validações retorna true
+
+        //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
+        //Email - ter um formato de email a@a.com
+        //Senha - pelo menos 6 dígitos
+        //Data - verificar se está no formato de data dd/mm/aaaa
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

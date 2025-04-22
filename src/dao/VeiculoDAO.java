@@ -30,7 +30,7 @@ public class VeiculoDAO {
     }
 
     public boolean alterar(Veiculo veiculo) {
-        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, disponivel = ? WHERE id = ?";
+        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, disponivel = ? WHERE pkVeiculo = ?";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
 
@@ -40,7 +40,7 @@ public class VeiculoDAO {
             stmt.setString(3, veiculo.getPlaca());
             stmt.setString(4, veiculo.getAno());
             stmt.setBoolean(5, veiculo.isDisponivel());
-            stmt.setInt(6, veiculo.getid());
+            stmt.setInt(6, veiculo.getPkVeiculo());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class VeiculoDAO {
     }
 
     public boolean deletar(int id) {
-        String sql = "DELETE FROM veiculo WHERE id = ?";
+        String sql = "DELETE FROM veiculo WHERE pkVeiculo = ?";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
 
@@ -69,7 +69,7 @@ public class VeiculoDAO {
 
     public List<Veiculo> consultar() {
         List<Veiculo> lista = new ArrayList<>();
-        String sql = "SELECT * FROM tbveiculo";
+        String sql = "SELECT * FROM veiculo";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
         ResultSet rs = null;
@@ -78,7 +78,7 @@ public class VeiculoDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Veiculo v = new Veiculo();
-                v.setid(rs.getInt("pk_veiculo"));
+                v.setid(rs.getInt("pkveiculo"));
                 v.setModelo(rs.getString("modelo"));
                 v.setMarca(rs.getString("marca"));
                 v.setPlaca(rs.getString("placa"));
@@ -96,7 +96,7 @@ public class VeiculoDAO {
     }
 
     public Veiculo consultarPorId(int id) {
-        String sql = "SELECT * FROM veiculo WHERE pk_veiculo = ?";
+        String sql = "SELECT * FROM veiculo WHERE pkVeiculo = ?";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
         ResultSet rs = null;
@@ -107,7 +107,7 @@ public class VeiculoDAO {
 
             if (rs.next()) {
                 Veiculo v = new Veiculo();
-                v.setid(rs.getInt("id"));
+                v.setid(rs.getInt("pkveiculo"));
                 v.setModelo(rs.getString("modelo"));
                 v.setMarca(rs.getString("marca"));
                 v.setPlaca(rs.getString("placa"));

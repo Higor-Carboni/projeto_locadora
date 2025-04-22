@@ -61,7 +61,7 @@ public class UsuarioController {
   public boolean inserirUsuario(Usuario usu) {
     //Montar o comando a ser executado
     //os ? são variáveis que são preenchidas mais adiante
-    String sql = "INSERT INTO usuario(nome, email, senha, datanasc, ativo) "
+    String sql = "INSERT INTO usuario(nome, email, senha, datanascusu, ativo) "
             + " VALUES (?,?,?,?,?)";
 
     //Cria uma instância do gerenciador de conexão(conexão com o banco de dados),
@@ -76,7 +76,7 @@ public class UsuarioController {
       comando.setString(1, usu.getNome());
       comando.setString(2, usu.getEmail());
       comando.setString(3, usu.getSenha());
-      comando.setDate(4, new java.sql.Date(usu.getDataNasc().getTime()));
+      comando.setDate(4, new java.sql.Date(usu.getDataNascUsu().getTime()));
       comando.setBoolean(5, usu.isAtivo());
 
       //Executa o insert
@@ -99,7 +99,7 @@ public class UsuarioController {
       sql = sql + " , senha = ? ";
     }
 
-    sql = sql + " , datanasc = ?, ativo = ? WHERE pkusuario = ?";
+    sql = sql + " , datanascusu = ?, ativo = ? WHERE pkusuario = ?";
 
     GerenciadorConexao gerenciador = new GerenciadorConexao();
     PreparedStatement comando = null;
@@ -118,7 +118,7 @@ public class UsuarioController {
       }
       
       //numCampo = 3 ou 4
-      comando.setDate(numCampo, new java.sql.Date(u.getDataNasc().getTime()));
+      comando.setDate(numCampo, new java.sql.Date(u.getDataNascUsu().getTime()));
       numCampo++;
       //numCampo = 4 ou 5
       comando.setBoolean(numCampo, u.isAtivo());
@@ -170,7 +170,7 @@ public class UsuarioController {
         usu.setNome(resultado.getString("nome"));
         usu.setEmail(resultado.getString("email"));
         usu.setSenha(resultado.getString("senha"));
-        usu.setDataNasc(resultado.getDate("datanasc"));
+        usu.setDataNascUsu(resultado.getDate("datanascusu"));
         usu.setAtivo(resultado.getBoolean("ativo"));
       }
 
@@ -217,7 +217,7 @@ public class UsuarioController {
         usuario.setNome(resultado.getString("nome"));
         usuario.setEmail(resultado.getString("email"));
         usuario.setSenha(resultado.getString("senha"));
-        usuario.setDataNasc(resultado.getDate("datanasc"));
+        usuario.setDataNascUsu(resultado.getDate("datanascusu"));
         usuario.setAtivo(resultado.getBoolean("ativo"));
 
         //adiciono o usuário na lista
