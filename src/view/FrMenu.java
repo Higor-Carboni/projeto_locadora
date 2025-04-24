@@ -38,6 +38,7 @@ public class FrMenu extends javax.swing.JFrame {
         barMenu = new javax.swing.JMenuBar();
         meCadastro = new javax.swing.JMenu();
         miCadUsuario = new javax.swing.JMenuItem();
+        miCadLocacao = new javax.swing.JMenuItem();
         miCadVeiculo = new javax.swing.JMenuItem();
         miCadCliente = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
@@ -88,6 +89,14 @@ public class FrMenu extends javax.swing.JFrame {
             }
         });
         meCadastro.add(miCadUsuario);
+
+        miCadLocacao.setText("Locação");
+        miCadLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadLocacaoActionPerformed(evt);
+            }
+        });
+        meCadastro.add(miCadLocacao);
 
         miCadVeiculo.setText("Veiculo");
         miCadVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -178,8 +187,7 @@ public class FrMenu extends javax.swing.JFrame {
   }//GEN-LAST:event_miConUsuarioActionPerformed
 
   private void miConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConClienteActionPerformed
-    FrConClientes telaCliente = new FrConClientes(this, rootPaneCheckingEnabled);
-    
+    FrCadCliente telaCliente = new FrCadCliente(this, true);
     telaCliente.setVisible(true);
   }//GEN-LAST:event_miConClienteActionPerformed
 
@@ -223,10 +231,17 @@ public class FrMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_miConVeiculoActionPerformed
 
     private void miCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadClienteActionPerformed
-        FrCadCliente telaCliente = new FrCadCliente(this, rootPaneCheckingEnabled);
+        FrConCliente telaCliente = new FrConCliente(null, rootPaneCheckingEnabled);
         
         telaCliente.setVisible(true);
     }//GEN-LAST:event_miCadClienteActionPerformed
+
+    private void miCadLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadLocacaoActionPerformed
+    FrCadLocacao telaLocacao = new FrCadLocacao(this, rootPaneCheckingEnabled);
+    
+    //Torno a tela visível
+    telaLocacao.setVisible(true);
+    }//GEN-LAST:event_miCadLocacaoActionPerformed
 
   /**
    * @param args the command line arguments
@@ -271,6 +286,7 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JMenu meConsulta;
     private javax.swing.JMenu meSobre;
     private javax.swing.JMenuItem miCadCliente;
+    private javax.swing.JMenuItem miCadLocacao;
     private javax.swing.JMenuItem miCadUsuario;
     private javax.swing.JMenuItem miCadVeiculo;
     private javax.swing.JMenuItem miConCliente;
