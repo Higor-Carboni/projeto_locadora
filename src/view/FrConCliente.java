@@ -153,7 +153,7 @@ public class FrConCliente extends javax.swing.JFrame {
         usu.getPkUsuario(), //coluna 0
         usu.getNome(), //coluna 1
         usu.getEmail(), //coluna 2
-        Utils.converterDateToString(usu.getDataNasc()), //coluna 3
+        Utils.converterDateToString(usu.getDataNascUsu()), //coluna 3
         usu.ativoToString() //coluna 4
       };
       
