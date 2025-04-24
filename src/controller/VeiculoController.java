@@ -22,7 +22,7 @@ public class VeiculoController {
             comando.setString(2, v.getMarca());
             comando.setString(3, v.getPlaca());
             comando.setString(4, v.getAno());
-            comando.setBoolean(5, v.isDisponivel());
+            comando.setBoolean(5, v.isStatus());
 
             comando.executeUpdate();
             return true;
@@ -48,7 +48,7 @@ public class VeiculoController {
             comando.setString(2, v.getMarca());
             comando.setString(3, v.getPlaca());
             comando.setString(4, v.getAno());
-            comando.setBoolean(5, v.isDisponivel());
+            comando.setBoolean(5, v.isStatus());
             comando.setInt(6, v.getPkVeiculo());
 
             comando.executeUpdate();
@@ -105,7 +105,6 @@ public class VeiculoController {
                 v.setMarca(resultado.getString("marca"));
                 v.setPlaca(resultado.getString("placa"));
                 v.setAno(resultado.getString("ano"));
-                v.setDisponivel(resultado.getBoolean("disponivel"));
 
                 lista.add(v);
             }
@@ -139,7 +138,6 @@ public class VeiculoController {
                 v.setMarca(resultado.getString("marca"));
                 v.setPlaca(resultado.getString("placa"));
                 v.setAno(resultado.getString("ano"));
-                v.setDisponivel(resultado.getBoolean("disponivel"));
             }
 
         } catch (SQLException e) {

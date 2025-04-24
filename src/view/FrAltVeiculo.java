@@ -61,7 +61,7 @@ public class FrAltVeiculo extends javax.swing.JDialog {
     edtMarca.setText(veiculo.getMarca());
     edtPlaca.setText(veiculo.getPlaca());
     edtAno.setText(veiculo.getAno());
-    chkDisponivel.setSelected(veiculo.isDisponivel());
+    chkDisponivel.setSelected(veiculo.isStatus());
 
   }
 
@@ -235,7 +235,7 @@ public class FrAltVeiculo extends javax.swing.JDialog {
 
    
 
-    Veiculo.setDisponivel(chkDisponivel.isSelected());
+    Veiculo.setStatus(chkDisponivel.isSelected());
     
     //Passar o objeto usu para o controller
     //enviar para o banco de dados

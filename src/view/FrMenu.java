@@ -210,9 +210,14 @@ public class FrMenu extends javax.swing.JFrame {
   }//GEN-LAST:event_miConUsuarioActionPerformed
 
   private void miConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConClienteActionPerformed
+<<<<<<< HEAD
       FrConCliente telaCliente = new FrConCliente(this, rootPaneCheckingEnabled);
 
       telaCliente.setVisible(true);
+=======
+    FrConClientes telaCliente = new FrConClientes(this, true);
+    telaCliente.setVisible(true);
+>>>>>>> higor
   }//GEN-LAST:event_miConClienteActionPerformed
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -255,9 +260,15 @@ public class FrMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_miConVeiculoActionPerformed
 
     private void miCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadClienteActionPerformed
+<<<<<<< HEAD
         FrConCliente telaCliente = new FrConCliente(null, rootPaneCheckingEnabled);
 
         telaCliente.setVisible(true);
+=======
+        FrCadCliente telaCadCliente = new FrCadCliente(null, rootPaneCheckingEnabled);
+        
+        telaCadCliente.setVisible(true);
+>>>>>>> higor
     }//GEN-LAST:event_miCadClienteActionPerformed
 
     private void miCadLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadLocacaoActionPerformed

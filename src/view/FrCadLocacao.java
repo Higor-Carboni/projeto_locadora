@@ -10,12 +10,32 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import model.Cliente;
 import controller.ClienteController;
+import controller.LocacaoController;
+import controller.VeiculoController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Locacao;
+import model.Veiculo;
 
 /**
  *
  * @author aluno.saolucas
  */
 public class FrCadLocacao extends javax.swing.JDialog {
+
+    private String id;
+    private String nome;
+
+    //Métodos para ler os atributos por fora da classe
+    public String getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 
     /**
      * Creates new form FrCadLocacao
@@ -62,11 +82,11 @@ public class FrCadLocacao extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        edtDataFim = new javax.swing.JTextField();
         btnPesquisarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVeiculo = new javax.swing.JTable();
         btnSelecionarVeic = new javax.swing.JButton();
+        edtDataFim = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,20 +122,37 @@ public class FrCadLocacao extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+<<<<<<< HEAD
         jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 140, -1));
+=======
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 520, 150, 30));
+>>>>>>> higor
 
         btnCancelar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+<<<<<<< HEAD
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 140, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+=======
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 150, 30));
+>>>>>>> higor
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Data de Fim");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, 20));
-        jPanel1.add(edtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 220, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, 20));
 
         btnPesquisarCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnPesquisarCliente.setText("Pesquisar");
@@ -134,7 +171,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Marca", "Ano", "Modelo"
             }
         ));
         jScrollPane1.setViewportView(tblVeiculo);
@@ -143,13 +180,26 @@ public class FrCadLocacao extends javax.swing.JDialog {
 
         btnSelecionarVeic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnSelecionarVeic.setText("Selecionar Veíc.");
+        btnSelecionarVeic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarVeicActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnSelecionarVeic, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, 170, 30));
+
+        edtDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        edtDataFim.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 220, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+=======
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+>>>>>>> higor
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,6 +221,105 @@ public class FrCadLocacao extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Não foi selecionado um cliente");
         }
     }//GEN-LAST:event_btnPesquisarClienteMouseClicked
+
+    public void pesquisar() {
+        //Pega o modelo da grade com suas colunas
+        // o 
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblVeiculo.getModel();
+
+        //Limpa a grade setando o número de linhas para zero
+        modeloTabela.setNumRows(0);
+
+        //Cria um UsuarioController para poder acessar os dados de tbusuario
+        VeiculoController controller = new VeiculoController();
+
+        //consulta os usuários e guarda a lista de usuários que encontrou
+        List<Veiculo> listaVeiculo = controller.listar();
+
+        //Preencher a grade
+        //percorre todos os usuários presentes na lista
+        for (Veiculo v : listaVeiculo) {
+            //cria um array onde cada posição é o valor das colunas da grade
+            Object[] linha = {
+                v.getPkVeiculo(), //coluna 0
+                v.getMarca(), //coluna 1
+                v.getAno(), //coluna 2
+                v.getModelo(),
+                v.getPlaca()
+            };
+
+            //Adiciona o array com os dados do usuário na grade
+            modeloTabela.addRow(linha);
+        }
+    }
+
+    private void btnSelecionarVeicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarVeicActionPerformed
+        FrSelecionarVeic telaSelecionar = new FrSelecionarVeic(null, rootPaneCheckingEnabled);
+        telaSelecionar.setVisible(true);
+        if (!telaSelecionar.getId().equals("")) {
+            DefaultTableModel modelo = (DefaultTableModel) tblVeiculo.getModel();
+
+            modelo.addRow(new Object[]{
+                telaSelecionar.getId(),
+                telaSelecionar.getAno(),
+                telaSelecionar.getModelo(),
+                telaSelecionar.getMarca(),
+                telaSelecionar.getPlaca(),});
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhum Veículo foi selecionado");
+
+        }
+    }//GEN-LAST:event_btnSelecionarVeicActionPerformed
+
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        gravar();
+    }//GEN-LAST:event_btnSalvarMouseClicked
+
+    public void gravar() {
+        try {
+            Locacao l = new Locacao();
+
+            // Data de início e fim
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataInicio = sdf.parse(edtDataInicio.getText());
+            Date dataFim = sdf.parse(edtDataFim.getText());
+
+            // Cliente
+            int clienteId = Integer.parseInt(edtClienteId.getText());
+
+            // Veículo (assumindo que só um é selecionado por vez)
+            int linhaSelecionada = tblVeiculo.getRowCount() - 1;
+            if (linhaSelecionada >= 0) {
+                int veiculoId = Integer.parseInt(tblVeiculo.getValueAt(linhaSelecionada, 0).toString());
+
+                // Setando os dados
+                l.setClienteId(clienteId);
+                l.setVeiculoId(veiculoId);
+                l.setDataInicio(dataInicio);
+                l.setDataFim(dataFim);
+
+                // Salvando
+                LocacaoController controller = new LocacaoController();
+
+                if (controller.inserir(l)) {
+                    JOptionPane.showMessageDialog(this, "Locação gravada com sucesso");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao gravar locação");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum veículo selecionado");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao gravar: " + e.getMessage());
+        }
+    }
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -227,7 +376,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSelecionarVeic;
     private javax.swing.JTextField edtClienteId;
-    private javax.swing.JTextField edtDataFim;
+    private javax.swing.JFormattedTextField edtDataFim;
     private javax.swing.JFormattedTextField edtDataInicio;
     private javax.swing.JTextField edtNomeCliente;
     private javax.swing.JLabel jLabel1;

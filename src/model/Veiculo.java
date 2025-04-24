@@ -15,7 +15,7 @@ public class Veiculo {
     private String marca;
     private String placa;
     private String ano;
-    private boolean disponivel;
+    private boolean Status;
 
     // Getters e Setters
 
@@ -59,12 +59,12 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
+    public boolean isStatus() {
+        return Status;
     }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setStatus(boolean Status) {
+        this.Status = Status;
     }
 }
 

@@ -6,38 +6,63 @@
 package view;
 
 import controller.ClienteController;
-import controller.UsuarioController;
+import controller.VeiculoController;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import model.Usuario;
-import utils.Utils;
+import model.Veiculo;
 
 /**
  *
  * @author higor
  */
-public class FrConCliente extends javax.swing.JDialog {
- private String id;
-  private String nome;
+public class FrSelecionarVeic extends javax.swing.JDialog {
 
-  //Métodos para ler os atributos por fora da classe
-  public String getId() {
-    return id;
-  }
+    public String getMarca() {
+        return Marca;
+    }
 
-  public String getNome() {
-    return nome;
-  }
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
+    }
+
+    public String getAno() {
+        return Ano;
+    }
+
+    public void setAno(String Ano) {
+        this.Ano = Ano;
+    }
+
+    public String getPlaca() {
+        return Placa;
+    }
+
+    public void setPlaca(String Placa) {
+        this.Placa = Placa;
+    }
+
+    private String id;
+    private String modelo;
+    private String Marca;
+    private String Ano;
+    private String Placa;
+
+    //Métodos para ler os atributos por fora da classe
+    public String getId() {
+        return id;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
     /**
-     * Creates new form FrConClientes
+     * Creates new form FrSelecionarVeic
      */
-    public FrConCliente(java.awt.Frame parent, boolean modal) {
+    public FrSelecionarVeic(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        
     }
 
     /**
@@ -49,25 +74,24 @@ public class FrConCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblClientes = new javax.swing.JTable();
-        btnExcluir = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblTitulo2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblVeiculo = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
+        btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblTitulo.setText("Consulta de Clientes");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitulo2.setText("Consulta de Veículo");
+        jPanel3.add(lblTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
-        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -75,7 +99,7 @@ public class FrConCliente extends javax.swing.JDialog {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Email", "Data Nasc.", "Ativo"
+                "Id", "Marca", "Modelo", "Ano", "Placa"
             }
         ) {
             Class[] types = new Class [] {
@@ -93,36 +117,13 @@ public class FrConCliente extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblClientes);
+        jScrollPane3.setViewportView(tblVeiculo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 670, 320));
-
-        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExcluirMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, -1, -1));
-
-        btnAlterar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnAlterar.setText("Alterar");
-        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterarMouseClicked(evt);
-            }
-        });
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 670, 320));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnVoltar.setText("Voltar");
-        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
+        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
 
         btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPesquisar.setText("Pesquisar");
@@ -131,22 +132,41 @@ public class FrConCliente extends javax.swing.JDialog {
                 btnPesquisarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        jPanel3.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        btnSelecionar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSelecionar.setText("Selecionar");
+        btnSelecionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSelecionarMouseClicked(evt);
+            }
+        });
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnSelecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/view/FrConCliente.java
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+=======
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> higor:src/view/FrSelecionarVeic.java
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD:src/view/FrConCliente.java
     //Limpa a grade setando o número de linhas para zero
     modeloTabela.setNumRows(0);
 
@@ -178,80 +198,71 @@ public class FrConCliente extends javax.swing.JDialog {
             //Se tiver pegar o código do usuário da grade
             int linhaSelecionada = tblClientes.getSelectedRow();
             String textoCelula = tblClientes.getValueAt(linhaSelecionada, 0).toString();
+=======
+    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
+        pesquisar();
+    }//GEN-LAST:event_btnPesquisarMouseClicked
+>>>>>>> higor:src/view/FrSelecionarVeic.java
 
-            //converter o texto da célula em inteiro
-            int pkUsuario = Integer.parseInt(textoCelula);
-
-            //com o pkUsuario eu vou chamar um método de deletar no controller
-            ClienteController controller = new ClienteController();
-            if (controller.excluir(pkUsuario)) {
-                pesquisar();
-                JOptionPane.showMessageDialog(rootPane, "Deletado com sucesso");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Não foi deletado");
-            }
-        }
-    }//GEN-LAST:event_btnExcluirMouseClicked
-
-       public void pesquisar() {
+    public void pesquisar() {
         //Pega o modelo da grade com suas colunas
         // o 
-        DefaultTableModel modeloTabela = (DefaultTableModel) tblClientes.getModel();
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblVeiculo.getModel();
 
         //Limpa a grade setando o número de linhas para zero
         modeloTabela.setNumRows(0);
 
         //Cria um UsuarioController para poder acessar os dados de tbusuario
-        ClienteController controller = new ClienteController();
+        VeiculoController controller = new VeiculoController();
 
         //consulta os usuários e guarda a lista de usuários que encontrou
-        List<Cliente> listaCliente = controller.listar();
+        List<Veiculo> listaVeiculo = controller.listar();
 
         //Preencher a grade
         //percorre todos os usuários presentes na lista
-        for (Cliente cli : listaCliente) {
+        for (Veiculo v : listaVeiculo) {
             //cria um array onde cada posição é o valor das colunas da grade
             Object[] linha = {
-                cli.getId(), //coluna 0
-                cli.getNome(), //coluna 1
-                cli.getEmailCli(), //coluna 2
-                cli.getCpf()
+                v.getPkVeiculo(), //coluna 0
+                v.getMarca(), //coluna 1
+                v.getModelo(), //coluna 2
+                v.getAno(),
+                v.getPlaca()
             };
 
             //Adiciona o array com os dados do usuário na grade
             modeloTabela.addRow(linha);
         }
     }
-    
-    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-        //Verificar se tem uma linha da grade selecionada
-        if (tblClientes.getSelectedRow() != -1) {
+    private void btnSelecionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelecionarMouseClicked
+        if (tblVeiculo.getSelectedRow() != -1) {
             //Se tiver pegar o código do usuário da grade
-            int linhaSelecionada = tblClientes.getSelectedRow();
-            String textoCelula = tblClientes.getValueAt(linhaSelecionada, 0).toString();
+            int linhaSelecionada = tblVeiculo.getSelectedRow();
+            String textoCelula = tblVeiculo.getValueAt(linhaSelecionada, 0).toString();
 
             //converter o texto da célula em inteiro
-            int pkUsuario = Integer.parseInt(textoCelula);
+            id = textoCelula;
+            String textoNome = tblVeiculo.getValueAt(linhaSelecionada, 1).toString();
+            modelo = textoNome;
 
+            String textoMarca = tblVeiculo.getValueAt(linhaSelecionada, 2).toString();
+            Marca = textoMarca;
+            String textoAno = tblVeiculo.getValueAt(linhaSelecionada, 3).toString();
+            Ano = textoAno;
+            String textoPlaca = tblVeiculo.getValueAt(linhaSelecionada, 4).toString();
+            Placa = textoPlaca;
+
+            this.dispose();
             //com o pkUsuario eu vou criar uma tela de
             //alteração passando o pkUsuario
             //Essa tela irá carregar os dados desse usuário
-            //para poder alterar
-            FrAltUsuario telaAlt = new FrAltUsuario(null, rootPaneCheckingEnabled, pkUsuario);
 
-            telaAlt.setVisible(true);
-
-            pesquisar();
         }
-    }//GEN-LAST:event_btnAlterarMouseClicked
+    }//GEN-LAST:event_btnSelecionarMouseClicked
 
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        pesquisar();
-    }//GEN-LAST:event_btnPesquisarMouseClicked
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,21 +281,20 @@ public class FrConCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrConCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrConCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrConCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrConCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrConCliente dialog = new FrConCliente(new javax.swing.JFrame(), true);
+                FrSelecionarVeic dialog = new FrSelecionarVeic(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -297,13 +307,12 @@ public class FrConCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tblClientes;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JTable tblVeiculo;
     // End of variables declaration//GEN-END:variables
 }

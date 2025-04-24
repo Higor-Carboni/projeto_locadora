@@ -9,7 +9,7 @@ import model.Veiculo;
 public class VeiculoDAO {
 
     public boolean inserir(Veiculo veiculo) {
-        String sql = "INSERT INTO veiculo (modelo, marca, placa, ano, disponivel) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO veiculo (modelo, marca, placa, ano, Status) VALUES (?, ?, ?, ?, ?)";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
 
@@ -18,7 +18,7 @@ public class VeiculoDAO {
             stmt.setString(2, veiculo.getMarca());
             stmt.setString(3, veiculo.getPlaca());
             stmt.setString(4, veiculo.getAno());
-            stmt.setBoolean(5, veiculo.isDisponivel());
+            stmt.setBoolean(5, veiculo.isStatus());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -30,7 +30,7 @@ public class VeiculoDAO {
     }
 
     public boolean alterar(Veiculo veiculo) {
-        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, disponivel = ? WHERE pkVeiculo = ?";
+        String sql = "UPDATE veiculo SET modelo = ?, marca = ?, placa = ?, ano = ?, Status = ? WHERE pkVeiculo = ?";
         GerenciadorConexao gc = new GerenciadorConexao();
         PreparedStatement stmt = gc.prepararComando(sql);
 
@@ -39,7 +39,7 @@ public class VeiculoDAO {
             stmt.setString(2, veiculo.getMarca());
             stmt.setString(3, veiculo.getPlaca());
             stmt.setString(4, veiculo.getAno());
-            stmt.setBoolean(5, veiculo.isDisponivel());
+            stmt.setBoolean(5, veiculo.isStatus());
             stmt.setInt(6, veiculo.getPkVeiculo());
 
             return stmt.executeUpdate() > 0;
@@ -83,7 +83,7 @@ public class VeiculoDAO {
                 v.setMarca(rs.getString("marca"));
                 v.setPlaca(rs.getString("placa"));
                 v.setAno(rs.getString("ano"));
-                v.setDisponivel(rs.getBoolean("disponivel"));
+                v.setStatus(rs.getBoolean("Status"));
                 lista.add(v);
             }
         } catch (SQLException e) {
@@ -112,7 +112,7 @@ public class VeiculoDAO {
                 v.setMarca(rs.getString("marca"));
                 v.setPlaca(rs.getString("placa"));
                 v.setAno(rs.getString("ano"));
-                v.setDisponivel(rs.getBoolean("disponivel"));
+                v.setStatus(rs.getBoolean("Status"));
                 return v;
             }
 
