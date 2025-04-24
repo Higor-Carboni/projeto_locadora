@@ -151,6 +151,3 @@ public class VeiculoController {
         return v;
     }
 }
-        
-   
-

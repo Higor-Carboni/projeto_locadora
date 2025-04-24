@@ -187,7 +187,8 @@ public class FrMenu extends javax.swing.JFrame {
   }//GEN-LAST:event_miConUsuarioActionPerformed
 
   private void miConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConClienteActionPerformed
-    FrCadCliente telaCliente = new FrCadCliente(this, true);
+    FrConCliente telaCliente = new FrConCliente();
+    
     telaCliente.setVisible(true);
   }//GEN-LAST:event_miConClienteActionPerformed
 

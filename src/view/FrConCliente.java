@@ -147,6 +147,31 @@ public class FrConCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Limpa a grade setando o número de linhas para zero
+    modeloTabela.setNumRows(0);
+
+    //Cria um UsuarioController para poder acessar os dados de tbusuario
+    UsuarioController controller = new UsuarioController();
+    
+    //consulta os usuários e guarda a lista de usuários que encontrou
+    List<Usuario> listaUsuarios = controller.consultar();
+    
+    //Preencher a grade
+    //percorre todos os usuários presentes na lista
+    for (Usuario usu : listaUsuarios) {
+      //cria um array onde cada posição é o valor das colunas da grade
+      Object[] linha = {
+        usu.getPkUsuario(), //coluna 0
+        usu.getNome(), //coluna 1
+        usu.getEmail(), //coluna 2
+        Utils.converterDateToString(usu.getDataNascUsu()), //coluna 3
+        usu.ativoToString() //coluna 4
+      };
+      
+      //Adiciona o array com os dados do usuário na grade
+      modeloTabela.addRow(linha);
+    }
+  }
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
         //Verificar se tem uma linha da grade selecionada
         if (tblClientes.getSelectedRow() != -1) {
