@@ -182,7 +182,7 @@ public class FrConVeiculo extends javax.swing.JDialog {
                 veic.getMarca(),
                 veic.getPlaca(),
                 veic.getAno(),
-                veic.isDisponivel()
+                veic.isStatus()
             };
             modeloTabela.addRow(linha);
         }

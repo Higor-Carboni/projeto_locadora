@@ -188,7 +188,7 @@ public class FrCadCliente extends javax.swing.JDialog {
 
         //conversão de String para Date
         c.setNome(edtNome.getText());
-        c.setEmailCli(edtCPF.getText());
+        c.setEmailCli(edtEmail.getText()); 
         c.setCpf(edtCPF.getText());
 
         //depois passo o objeto para o controller e ele irá gravar no banco de dados
@@ -227,7 +227,7 @@ public class FrCadCliente extends javax.swing.JDialog {
                     "O campo 'CPF' deve estar no formato 000.000.000-00");
             return false;
         }
-        
+
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

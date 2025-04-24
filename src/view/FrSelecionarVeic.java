@@ -6,35 +6,63 @@
 package view;
 
 import controller.ClienteController;
+import controller.VeiculoController;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.Veiculo;
 
 /**
  *
  * @author higor
  */
-public class FrSelecionarCli extends javax.swing.JDialog {
+public class FrSelecionarVeic extends javax.swing.JDialog {
+
+    public String getMarca() {
+        return Marca;
+    }
+
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
+    }
+
+    public String getAno() {
+        return Ano;
+    }
+
+    public void setAno(String Ano) {
+        this.Ano = Ano;
+    }
+
+    public String getPlaca() {
+        return Placa;
+    }
+
+    public void setPlaca(String Placa) {
+        this.Placa = Placa;
+    }
 
     private String id;
-    private String nome;
+    private String modelo;
+    private String Marca;
+    private String Ano;
+    private String Placa;
 
     //Métodos para ler os atributos por fora da classe
     public String getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getModelo() {
+        return modelo;
     }
 
     /**
-     * Creates new form FrSelecionarCli
+     * Creates new form FrSelecionarVeic
      */
-    public FrSelecionarCli(java.awt.Frame parent, boolean modal) {
+    public FrSelecionarVeic(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,7 +77,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         lblTitulo2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblClientes2 = new javax.swing.JTable();
+        tblVeiculo = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnSelecionar = new javax.swing.JButton();
@@ -60,10 +88,10 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblTitulo2.setText("Consulta de Clientes");
+        lblTitulo2.setText("Consulta de Veículo");
         jPanel3.add(lblTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
-        tblClientes2.setModel(new javax.swing.table.DefaultTableModel(
+        tblVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -71,7 +99,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Email", "Data Nasc.", "Ativo"
+                "Id", "Marca", "Modelo", "Ano", "Placa"
             }
         ) {
             Class[] types = new Class [] {
@@ -89,7 +117,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tblClientes2);
+        jScrollPane3.setViewportView(tblVeiculo);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 670, 320));
 
@@ -124,7 +152,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,56 +161,65 @@ public class FrSelecionarCli extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-      public void pesquisar() {
+
+    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
+        pesquisar();
+    }//GEN-LAST:event_btnPesquisarMouseClicked
+
+    public void pesquisar() {
         //Pega o modelo da grade com suas colunas
         // o 
-        DefaultTableModel modeloTabela = (DefaultTableModel) tblClientes2.getModel();
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblVeiculo.getModel();
 
         //Limpa a grade setando o número de linhas para zero
         modeloTabela.setNumRows(0);
 
         //Cria um UsuarioController para poder acessar os dados de tbusuario
-        ClienteController controller = new ClienteController();
+        VeiculoController controller = new VeiculoController();
 
         //consulta os usuários e guarda a lista de usuários que encontrou
-        List<Cliente> listaCliente = controller.listar();
+        List<Veiculo> listaVeiculo = controller.listar();
 
         //Preencher a grade
         //percorre todos os usuários presentes na lista
-        for (Cliente cli : listaCliente) {
+        for (Veiculo v : listaVeiculo) {
             //cria um array onde cada posição é o valor das colunas da grade
             Object[] linha = {
-                cli.getId(), //coluna 0
-                cli.getNome(), //coluna 1
-                cli.getEmailCli(), //coluna 2
-                cli.getCpf()
+                v.getPkVeiculo(), //coluna 0
+                v.getMarca(), //coluna 1
+                v.getModelo(), //coluna 2
+                v.getAno(),
+                v.getPlaca()
             };
 
             //Adiciona o array com os dados do usuário na grade
             modeloTabela.addRow(linha);
         }
     }
-    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        pesquisar();
-    }//GEN-LAST:event_btnPesquisarMouseClicked
-
     private void btnSelecionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelecionarMouseClicked
-        if (tblClientes2.getSelectedRow() != -1) {
-          //Se tiver pegar o código do usuário da grade
-          int linhaSelecionada = tblClientes2.getSelectedRow();
-          String textoCelula = tblClientes2.getValueAt(linhaSelecionada, 0).toString();
+        if (tblVeiculo.getSelectedRow() != -1) {
+            //Se tiver pegar o código do usuário da grade
+            int linhaSelecionada = tblVeiculo.getSelectedRow();
+            String textoCelula = tblVeiculo.getValueAt(linhaSelecionada, 0).toString();
 
-          //converter o texto da célula em inteiro
-          id = textoCelula;
-          String textoNome = tblClientes2.getValueAt(linhaSelecionada, 1).toString();
-          nome = textoNome;
-          
-          this.dispose();
-          //com o pkUsuario eu vou criar uma tela de  
-          //alteração passando o pkUsuario
-          //Essa tela irá carregar os dados desse usuário
+            //converter o texto da célula em inteiro
+            id = textoCelula;
+            String textoNome = tblVeiculo.getValueAt(linhaSelecionada, 1).toString();
+            modelo = textoNome;
 
-      }
+            String textoMarca = tblVeiculo.getValueAt(linhaSelecionada, 2).toString();
+            Marca = textoMarca;
+            String textoAno = tblVeiculo.getValueAt(linhaSelecionada, 3).toString();
+            Ano = textoAno;
+            String textoPlaca = tblVeiculo.getValueAt(linhaSelecionada, 4).toString();
+            Placa = textoPlaca;
+
+            this.dispose();
+            //com o pkUsuario eu vou criar uma tela de
+            //alteração passando o pkUsuario
+            //Essa tela irá carregar os dados desse usuário
+
+        }
     }//GEN-LAST:event_btnSelecionarMouseClicked
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
@@ -206,20 +243,20 @@ public class FrSelecionarCli extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarVeic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrSelecionarCli dialog = new FrSelecionarCli(new javax.swing.JFrame(), true);
+                FrSelecionarVeic dialog = new FrSelecionarVeic(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -238,6 +275,6 @@ public class FrSelecionarCli extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblTitulo2;
-    private javax.swing.JTable tblClientes2;
+    private javax.swing.JTable tblVeiculo;
     // End of variables declaration//GEN-END:variables
 }

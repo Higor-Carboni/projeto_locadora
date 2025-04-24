@@ -187,7 +187,7 @@ public class FrMenu extends javax.swing.JFrame {
   }//GEN-LAST:event_miConUsuarioActionPerformed
 
   private void miConClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConClienteActionPerformed
-    FrCadCliente telaCliente = new FrCadCliente(this, true);
+    FrConClientes telaCliente = new FrConClientes(this, true);
     telaCliente.setVisible(true);
   }//GEN-LAST:event_miConClienteActionPerformed
 
@@ -231,9 +231,9 @@ public class FrMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_miConVeiculoActionPerformed
 
     private void miCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadClienteActionPerformed
-        FrConCliente telaCliente = new FrConCliente(null, rootPaneCheckingEnabled);
+        FrCadCliente telaCadCliente = new FrCadCliente(null, rootPaneCheckingEnabled);
         
-        telaCliente.setVisible(true);
+        telaCadCliente.setVisible(true);
     }//GEN-LAST:event_miCadClienteActionPerformed
 
     private void miCadLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadLocacaoActionPerformed
