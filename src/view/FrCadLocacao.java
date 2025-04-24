@@ -5,6 +5,12 @@
  */
 package view;
 
+import components.BordaArredondada;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
+import model.Cliente;
+import controller.ClienteController;
+
 /**
  *
  * @author aluno.saolucas
@@ -17,6 +23,22 @@ public class FrCadLocacao extends javax.swing.JDialog {
     public FrCadLocacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ajustarColunas();
+        this.setLocationRelativeTo(null);
+        edtClienteId.setBorder(new BordaArredondada(15));
+        edtNomeCliente.setBorder(new BordaArredondada(15));
+        edtDataFim.setBorder(new BordaArredondada(15));
+        edtDataInicio.setBorder(new BordaArredondada(15));
+        edtDataFim.setBorder(new BordaArredondada(15));
+        btnCancelar.setBorder(new BordaArredondada(15));
+        btnPesquisarCliente.setBorder(new BordaArredondada(15));
+        btnSalvar.setBorder(new BordaArredondada(15));
+        btnSelecionarVeic.setBorder(new BordaArredondada(15));
+
+        javax.swing.border.Border padding = new javax.swing.border.EmptyBorder(5, 5, 5, 5);
+        javax.swing.border.Border line = new javax.swing.border.LineBorder(new java.awt.Color(150, 150, 200), 2, true);
+        javax.swing.border.Border roundedBorder = javax.swing.BorderFactory.createCompoundBorder(line, padding);
+        jScrollPane1.setBorder(roundedBorder);
     }
 
     /**
@@ -32,87 +54,119 @@ public class FrCadLocacao extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         edtClienteId = new javax.swing.JTextField();
-        edtVeiculoId = new javax.swing.JTextField();
+        edtNomeCliente = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         edtDataInicio = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         edtDataFim = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        edtStatus = new javax.swing.JTextField();
+        btnPesquisarCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblVeiculo = new javax.swing.JTable();
+        btnSelecionarVeic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitulo.setText("Cadastro de Locação");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblNome.setText("Id do Cliente");
+        lblNome.setText("ID");
         jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         edtClienteId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 50, 30));
+        jPanel1.add(edtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 50, 30));
 
-        edtVeiculoId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtVeiculoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 50, 30));
+        edtNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 260, 30));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblEmail.setText("Id do Veículo");
-        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+        lblEmail.setText("Nome do Cliente:");
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblSenha.setText("Data de Inicio");
-        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPanel1.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         edtDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         edtDataInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 120, 30));
+        jPanel1.add(edtDataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 220, 30));
 
-        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSalvar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 140, -1));
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 520, 150, 30));
 
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 140, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 150, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Data de Fim");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, 20));
-        jPanel1.add(edtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 120, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, 20));
+        jPanel1.add(edtDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 220, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Status");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
-        jPanel1.add(edtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 150, 30));
+        btnPesquisarCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnPesquisarCliente.setText("Pesquisar");
+        btnPesquisarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarClienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnPesquisarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 150, 30));
+
+        tblVeiculo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblVeiculo);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 490, 180));
+
+        btnSelecionarVeic.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnSelecionarVeic.setText("Selecionar Veíc.");
+        jPanel1.add(btnSelecionarVeic, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseClicked
+        FrSelecionarCli telaConsultar = new FrSelecionarCli(null, rootPaneCheckingEnabled);
+        telaConsultar.setVisible(true);
+
+        //Quando fechar a tela de consultar vai voltar aqui e testar se selecionou ou não
+        if (!telaConsultar.getId().equals("")) {
+            edtClienteId.setText(telaConsultar.getId());
+            edtNomeCliente.setText(telaConsultar.getNome());
+        } else {
+            JOptionPane.showMessageDialog(this, "Não foi selecionado um cliente");
+        }
+    }//GEN-LAST:event_btnPesquisarClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -156,21 +210,29 @@ public class FrCadLocacao extends javax.swing.JDialog {
         });
     }
 
+    private void ajustarColunas() {
+        TableColumn colunaId = tblVeiculo.getColumnModel().getColumn(0);
+        colunaId.setMinWidth(40);
+        colunaId.setMaxWidth(40);
+        colunaId.setPreferredWidth(40);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnPesquisarCliente;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSelecionarVeic;
     private javax.swing.JTextField edtClienteId;
     private javax.swing.JTextField edtDataFim;
     private javax.swing.JFormattedTextField edtDataInicio;
-    private javax.swing.JTextField edtStatus;
-    private javax.swing.JTextField edtVeiculoId;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField edtNomeCliente;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblVeiculo;
     // End of variables declaration//GEN-END:variables
 }

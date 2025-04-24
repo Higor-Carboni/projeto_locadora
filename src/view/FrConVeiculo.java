@@ -14,6 +14,7 @@ import javax.swing.table.TableColumn;
 import model.Usuario;
 import model.Veiculo;
 import utils.Utils;
+import view.FrAltVeiculo;
 
 /**
  *
@@ -124,6 +125,11 @@ public class FrConVeiculo extends javax.swing.JDialog {
                 btnAlterarMouseClicked(evt);
             }
         });
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -220,7 +226,7 @@ public class FrConVeiculo extends javax.swing.JDialog {
             FrAltVeiculo telaAlt = new FrAltVeiculo(null, rootPaneCheckingEnabled, id);
 
             telaAlt.setVisible(true);
-
+            
             pesquisar();
         }
     }//GEN-LAST:event_btnAlterarMouseClicked
@@ -232,6 +238,10 @@ public class FrConVeiculo extends javax.swing.JDialog {
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
     this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments

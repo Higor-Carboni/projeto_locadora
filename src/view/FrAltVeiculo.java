@@ -22,12 +22,17 @@ public class FrAltVeiculo extends javax.swing.JDialog {
 
     /** Creates new form FrAltVeiculo */
     private int pkVeiculo;
-    
+  
+  public void setPkusuario(int pkusuario){
+    this.pkVeiculo = pkVeiculo;
+  }
     public FrAltVeiculo(java.awt.Frame parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
         
-        //this.pkVeiculo = pkVeiculo;
+        
+        
+         this.pkVeiculo = id;
         
         carregarVeiculo();
         this.setLocationRelativeTo(null);
@@ -52,8 +57,8 @@ public class FrAltVeiculo extends javax.swing.JDialog {
 
     String codigo = String.valueOf(veiculo.getPkVeiculo());
     edtCodigo.setText(codigo);
+    edtModelo.setText(veiculo.getModelo());
     edtMarca.setText(veiculo.getMarca());
-    edtMarca.setText(veiculo.getModelo());
     edtPlaca.setText(veiculo.getPlaca());
     edtAno.setText(veiculo.getAno());
     chkDisponivel.setSelected(veiculo.isDisponivel());
