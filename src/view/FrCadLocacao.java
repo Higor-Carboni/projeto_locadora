@@ -60,6 +60,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
         edtDataInicio = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         edtDataFim = new javax.swing.JTextField();
         btnPesquisarCliente = new javax.swing.JButton();
@@ -108,8 +109,8 @@ public class FrCadLocacao extends javax.swing.JDialog {
         btnCancelar.setText("Cancelar");
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 140, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        jPanel1.add(jLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Data de Fim");
@@ -229,6 +230,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
     private javax.swing.JTextField edtDataFim;
     private javax.swing.JFormattedTextField edtDataInicio;
     private javax.swing.JTextField edtNomeCliente;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
