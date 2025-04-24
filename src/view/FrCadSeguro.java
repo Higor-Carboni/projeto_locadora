@@ -175,7 +175,7 @@ public class FrCadSeguro extends javax.swing.JDialog {
         if (verificarCampos()) {
 
             gravar();
-        };
+        }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -200,9 +200,11 @@ public class FrCadSeguro extends javax.swing.JDialog {
         Seguro s = new Seguro();
 
         double valor = Double.parseDouble(txtValor.getText());
+        int valorCob = Integer.parseInt(txtValorCobertura.getText());
         //conversão de String para Date;
         s.setTipo_seguro(txtSeguro.getText());
         s.setValor(valor);
+        s.setValor_Cobertura(valorCob);
 
         //depois passo o objeto para o controller e ele irá gravar no banco de dados
         SeguroController controller = new SeguroController();

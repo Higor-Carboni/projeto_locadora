@@ -6,35 +6,42 @@
 package view;
 
 import controller.ClienteController;
+import controller.SeguroController;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.Seguro;
 
 /**
  *
- * @author higor
+ * @author arthu
  */
-public class FrSelecionarCli extends javax.swing.JDialog {
-
+public class FrSelecionarSeguro extends javax.swing.JDialog {
     private String id;
-    private String nome;
+    private String Tipo_seguro;
+    private double Valor;
+    private int Valor_Cobertura; 
 
-    //Métodos para ler os atributos por fora da classe
-    public String getId() {
+    public String getId(){
         return id;
     }
-
-    public String getNome() {
-        return nome;
+    public String getTipo_seguro() {
+        return Tipo_seguro;
     }
 
+    public double getValor() {
+        return Valor;
+    }
+
+    public int getValor_Cobertura() {
+        return Valor_Cobertura;
+    }
     /**
-     * Creates new form FrSelecionarCli
+     * Creates new form FrSelecionarSeguro
      */
-    public FrSelecionarCli(java.awt.Frame parent, boolean modal) {
+    public FrSelecionarSeguro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,7 +56,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         lblTitulo2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblClientes2 = new javax.swing.JTable();
+        tblSeguro = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnSelecionar = new javax.swing.JButton();
@@ -60,25 +67,25 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblTitulo2.setText("Consulta de Clientes");
+        lblTitulo2.setText("Selecionar Seguro");
         jPanel3.add(lblTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
-        tblClientes2.setModel(new javax.swing.table.DefaultTableModel(
+        tblSeguro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Email", "Data Nasc.", "Ativo"
+                "Id", "Tipo do Seguro", "Valor", "Valor Cobertura"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -89,7 +96,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tblClientes2);
+        jScrollPane3.setViewportView(tblSeguro);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 670, 320));
 
@@ -124,7 +131,7 @@ public class FrSelecionarCli extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,29 +140,29 @@ public class FrSelecionarCli extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-      public void pesquisar() {
+ public void pesquisar() {
         //Pega o modelo da grade com suas colunas
         // o 
-        DefaultTableModel modeloTabela = (DefaultTableModel) tblClientes2.getModel();
+        DefaultTableModel modeloTabela = (DefaultTableModel) tblSeguro.getModel();
 
         //Limpa a grade setando o número de linhas para zero
         modeloTabela.setNumRows(0);
 
         //Cria um UsuarioController para poder acessar os dados de tbusuario
-        ClienteController controller = new ClienteController();
+        SeguroController controller = new SeguroController();
 
         //consulta os usuários e guarda a lista de usuários que encontrou
-        List<Cliente> listaCliente = controller.listar();
+        List<Seguro> listaSeguro = controller.listar();
 
         //Preencher a grade
         //percorre todos os usuários presentes na lista
-        for (Cliente cli : listaCliente) {
+        for (Seguro s : listaSeguro) {
             //cria um array onde cada posição é o valor das colunas da grade
             Object[] linha = {
-                cli.getId(), //coluna 0
-                cli.getNome(), //coluna 1
-                cli.getEmailCli(), //coluna 2
-                cli.getCpf()
+                s.getPkSeguro(), //coluna 0
+                s.getTipo_seguro(), //coluna 1
+                s.getValor(), //coluna 2
+                s.getValor_Cobertura()
             };
 
             //Adiciona o array com os dados do usuário na grade
@@ -167,26 +174,26 @@ public class FrSelecionarCli extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void btnSelecionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSelecionarMouseClicked
-        if (tblClientes2.getSelectedRow() != -1) {
-          //Se tiver pegar o código do usuário da grade
-          int linhaSelecionada = tblClientes2.getSelectedRow();
-          String textoCelula = tblClientes2.getValueAt(linhaSelecionada, 0).toString();
-
-          //converter o texto da célula em inteiro
-          id = textoCelula;
-          String textoNome = tblClientes2.getValueAt(linhaSelecionada, 1).toString();
-          nome = textoNome;
-          
-          this.dispose();
-          //com o pkUsuario eu vou criar uma tela de  
-          //alteração passando o pkUsuario
-          //Essa tela irá carregar os dados desse usuário
-
-      }
+         
     }//GEN-LAST:event_btnSelecionarMouseClicked
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-        // TODO add your handling code here:
+        if (tblSeguro.getSelectedRow() != -1) {
+          //Se tiver pegar o código do usuário da grade
+          int linhaSelecionada = tblSeguro.getSelectedRow();
+          String textoCelula = tblSeguro.getValueAt(linhaSelecionada, 0).toString();
+
+          //converter o texto da célula em inteiro
+          id = textoCelula;
+          String textoNome = tblSeguro.getValueAt(linhaSelecionada, 1).toString();
+          Tipo_seguro = textoNome;
+          Double textoValor = (Double) tblSeguro.getValueAt(linhaSelecionada, 2);
+          Valor = textoValor;
+          int textoValorCob = (int) tblSeguro.getValueAt(linhaSelecionada, 3);
+          Valor_Cobertura = textoValorCob;
+          
+          this.dispose();
+        }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
@@ -206,20 +213,20 @@ public class FrSelecionarCli extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrSelecionarCli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrSelecionarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrSelecionarCli dialog = new FrSelecionarCli(new javax.swing.JFrame(), true);
+                FrSelecionarSeguro dialog = new FrSelecionarSeguro(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -238,6 +245,6 @@ public class FrSelecionarCli extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblTitulo2;
-    private javax.swing.JTable tblClientes2;
+    private javax.swing.JTable tblSeguro;
     // End of variables declaration//GEN-END:variables
 }

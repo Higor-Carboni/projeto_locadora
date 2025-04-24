@@ -60,6 +60,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
         edtDataInicio = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         edtDataFim = new javax.swing.JTextField();
         btnPesquisarCliente = new javax.swing.JButton();
@@ -148,7 +149,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,6 +230,7 @@ public class FrCadLocacao extends javax.swing.JDialog {
     private javax.swing.JTextField edtDataFim;
     private javax.swing.JFormattedTextField edtDataInicio;
     private javax.swing.JTextField edtNomeCliente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
